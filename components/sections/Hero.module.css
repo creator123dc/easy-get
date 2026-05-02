@@ -1,0 +1,87 @@
+.heroSection {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-background);
+}
+
+.banner {
+  background: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2400&auto=format&fit=crop') center 30%/cover no-repeat;
+  /* Premium fashion shopping image with great lighting */
+  min-height: 550px;
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+/* Maintain the Amazon fade */
+.banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: linear-gradient(to bottom, transparent 0%, var(--color-background) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Modern Left-Aligned Content Box over Image */
+.bannerContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 480px; /* Keep it tight */
+  margin-top: 5rem;
+  margin-bottom: auto; /* Float upper left */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.badge {
+  background-color: var(--color-dark);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #0F1111;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    min-height: 480px;
+    background-position: center left; /* Keep subject visible */
+  }
+  .bannerContent {
+    margin-top: 3rem;
+    padding: 0 16px;
+    max-width: 100%;
+    /* Add subtle gradient behind text on mobile so it pops over the complex image */
+    background: radial-gradient(circle at center left, rgba(255,255,255,0.85) 0%, transparent 80%);
+  }
+  .title {
+    font-size: 2.5rem;
+  }
+}

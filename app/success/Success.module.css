@@ -1,0 +1,148 @@
+.successPage {
+  padding: 4rem 0;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.successContent {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.successIcon {
+  margin-bottom: 1rem;
+  animation: successPulse 0.8s ease-in-out;
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.successTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #127A1A;
+  margin: 0;
+}
+
+.successMessage {
+  font-size: 1.25rem;
+  color: var(--color-dark);
+  margin: 0;
+  font-weight: 500;
+}
+
+.successDetails {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+  text-align: left;
+  width: 100%;
+}
+
+.successDetails p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.successDetails p:last-child {
+  margin-bottom: 0;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.continueButton {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  border: 2px solid var(--color-primary);
+}
+
+.continueButton:hover {
+  background-color: var(--color-primary-hover);
+  color: white;
+  text-decoration: none;
+}
+
+.viewCartButton {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-secondary);
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  border: 2px solid var(--color-secondary);
+}
+
+.viewCartButton:hover {
+  background-color: var(--color-secondary);
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .successPage {
+    padding: 2rem 0;
+  }
+  
+  .successContent {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .successTitle {
+    font-size: 2rem;
+  }
+  
+  .successMessage {
+    font-size: 1.1rem;
+  }
+  
+  .successDetails {
+    padding: 1.5rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .continueButton,
+  .viewCartButton {
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+  }
+}

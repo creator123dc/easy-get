@@ -1,0 +1,370 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successCard {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.successCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #10B981, #3B82F6, #8B5CF6);
+}
+
+/* Success Icon */
+.successIcon {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Success Message */
+.successTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.successSubtitle {
+  font-size: 1rem;
+  color: #6B7280;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+/* Order ID Section */
+.orderIdSection {
+  margin-bottom: 32px;
+}
+
+.orderIdLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6B7280;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.orderIdContainer {
+  margin-bottom: 16px;
+}
+
+.orderIdDisplay {
+  background: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 1.125rem;
+  color: #1F2937;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 12px;
+}
+
+.orderIdText {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #1F2937;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.copyButton {
+  background-color: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6B7280;
+}
+
+.copyButton:hover:not(:disabled) {
+  border-color: #10B981;
+  color: #10B981;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.copyButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.copyButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.saveNote {
+  font-size: 0.875rem;
+  color: #059669;
+  font-weight: 500;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.countdownNote {
+  font-size: 0.75rem;
+  color: #6B7280;
+  font-weight: 500;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Button Container */
+.buttonContainer {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.trackButton {
+  background-color: #10B981;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  flex: 1;
+  min-width: 140px;
+}
+
+.trackButton:hover:not(:disabled) {
+  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.trackButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #10B981;
+}
+
+.continueButton {
+  background-color: white;
+  color: #6B7280;
+  border: 2px solid #E5E7EB;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 140px;
+}
+
+.continueButton:hover {
+  border-color: #6B7280;
+  color: #1F2937;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.copyButton {
+  background-color: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6B7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.copyButton:hover:not(:disabled) {
+  border-color: #10B981;
+  color: #10B981;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.copyButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.copyButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Info Section */
+.infoSection {
+  text-align: left;
+  background-color: #F9FAFB;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #E5E7EB;
+}
+
+.infoTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1F2937;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.infoIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: #10B981;
+  margin-top: 2px;
+}
+
+.infoItem span {
+  font-size: 0.875rem;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 16px;
+  }
+  
+  .successCard {
+    padding: 32px 24px;
+    max-width: 100%;
+  }
+  
+  .successTitle {
+    font-size: 1.75rem;
+  }
+  
+  .successSubtitle {
+    font-size: 0.875rem;
+  }
+  
+  .orderIdDisplay {
+    font-size: 1rem;
+    padding: 12px;
+  }
+  
+  .buttonContainer {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .trackButton,
+  .continueButton,
+  .copyButton {
+    width: 100%;
+    padding: 12px 20px;
+  }
+  
+  .infoSection {
+    padding: 20px;
+  }
+  
+  .infoList {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .successCard {
+    padding: 24px 20px;
+  }
+  
+  .successTitle {
+    font-size: 1.5rem;
+  }
+  
+  .orderIdDisplay {
+    font-size: 0.875rem;
+    padding: 10px;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.successCard {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.successIcon {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.successTitle {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.successSubtitle {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.orderIdSection {
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.buttonContainer {
+  animation: fadeInUp 0.6s ease-out 0.5s both;
+}
+
+.infoSection {
+  animation: fadeInUp 0.6s ease-out 0.6s both;
+}
