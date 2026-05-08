@@ -58,17 +58,7 @@ export async function generateProductMetadata({ params }: { params: { id: string
           },
         ],
         locale: 'en_US',
-        type: 'product',
-        product: {
-          availability: 'in stock',
-          condition: 'new',
-          price: {
-            currency: 'PKR',
-            amount: price.toString(),
-          },
-          retailer: 'Easy Get',
-          images: [product.image],
-        },
+        type: 'website',
       },
       twitter: {
         card: 'summary_large_image',
