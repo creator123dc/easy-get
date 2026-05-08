@@ -18,7 +18,7 @@ export function TrustBadges() {
             </div>
             <div className={styles.content}>
               <h4>Fast Delivery</h4>
-              <p>Delivery in 2-5 days</p>
+              <p>Delivered within 3–5 days</p>
             </div>
           </div>
 
@@ -31,7 +31,7 @@ export function TrustBadges() {
             </div>
             <div className={styles.content}>
               <h4>Cash on Delivery</h4>
-              <p>Pay upon receiving</p>
+              <p>Pay when you receive</p>
             </div>
           </div>
 
@@ -44,7 +44,7 @@ export function TrustBadges() {
             </div>
             <div className={styles.content}>
               <h4>Easy Returns</h4>
-              <p>14-day return policy</p>
+              <p>Hassle-free 7-day returns</p>
             </div>
           </div>
 

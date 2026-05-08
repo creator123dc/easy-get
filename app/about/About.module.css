@@ -1,0 +1,493 @@
+.aboutPage {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 1rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Back to Home Button */
+.backToHome {
+  margin-bottom: 2rem;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: #ff6600;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: 2px solid #ff6600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.backButton:hover {
+  background: #ff6600;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+}
+
+.backIcon {
+  transform: rotate(180deg);
+}
+
+/* Hero Section */
+.heroSection {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #ff6600 0%, #ff9900 100%);
+  color: white;
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 8px 32px rgba(255, 102, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card Sections */
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e5e5;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: #ff6600;
+}
+
+.cardTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.cardTitle::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ff6600;
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+.cardText {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #666;
+  text-align: center;
+  max-width: 100%;
+}
+
+/* Features Grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.featureCard {
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6600, #ff9900);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(255, 102, 0, 0.15);
+  border-color: #ff6600;
+}
+
+.featureCard:hover::before {
+  transform: scaleX(1);
+}
+
+.featureIcon {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff6600;
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.featureText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* Trust Section */
+.trustSection {
+  margin: 3rem 0;
+  padding: 2rem 0;
+}
+
+.trustGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.trustItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: #ff6600;
+}
+
+.trustIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff6600 0%, #ff9900 100%);
+  color: white;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 16px rgba(255, 102, 0, 0.3);
+}
+
+.trustContent h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.trustContent p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Social Contact Card */
+.socialCard {
+  background: linear-gradient(135deg, #ff6600 0%, #ff9900 100%);
+  color: white;
+  border: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.socialCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.socialCard .cardTitle {
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.socialCard .cardTitle::after {
+  background: white;
+}
+
+.socialCard .cardText {
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  z-index: 1;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.socialButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.socialButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* CTA Card */
+.ctaCard {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.ctaCard .cardTitle {
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaCard .cardTitle::after {
+  background: white;
+}
+
+.ctaCard .cardText {
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  z-index: 1;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: white;
+  color: #28a745;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.ctaButton:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .heroSection {
+    padding: 3rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .trustSection {
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+  }
+  
+  .trustGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .trustItem {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .trustIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .trustContent h3 {
+    font-size: 1.1rem;
+  }
+  
+  .trustContent p {
+    font-size: 0.9rem;
+  }
+  
+  .card {
+    padding: 2rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cardTitle {
+    font-size: 1.6rem;
+  }
+  
+  .cardText {
+    font-size: 1rem;
+  }
+  
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .featureCard {
+    padding: 1.5rem;
+  }
+  
+  .backButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutPage {
+    padding: 0.5rem 0;
+  }
+  
+  .heroSection {
+    padding: 2rem 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .card {
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cardTitle {
+    font-size: 1.4rem;
+  }
+  
+  .cardText {
+    font-size: 0.95rem;
+  }
+  
+  .featureCard {
+    padding: 1.2rem;
+  }
+  
+  .socialButton {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .ctaButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}

@@ -14,6 +14,18 @@
   font-size: 0.85rem;
   font-weight: 500;
   transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.backToTopIcon {
+  transition: transform 0.2s ease;
+}
+
+.backToTop:hover .backToTopIcon {
+  transform: translateY(-2px);
 }
 
 .backToTop:hover {
@@ -40,6 +52,30 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #DDD;
+  font-size: 0.85rem;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.linkItem:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.linkIcon {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.linkItem:hover .linkIcon {
+  opacity: 1;
 }
 
 .linkList a {
@@ -95,6 +131,29 @@
   display: flex;
   gap: 1.5rem;
   margin-bottom: 0.5rem;
+}
+
+.bottomLink {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #ccc;
+  font-size: 0.75rem;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.bottomLink:hover {
+  text-decoration: underline;
+}
+
+.bottomLinkIcon {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.bottomLink:hover .bottomLinkIcon {
+  opacity: 1;
 }
 
 .bottomLinks a:hover {

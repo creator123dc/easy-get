@@ -2,13 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Globe, Music2 } from 'lucide-react';
+import { FaInstagram, FaTiktok } from "react-icons/fa";
+import { Building2, Users, FileText, HelpCircle, ArrowUp, Package, Shield, ChevronRight } from 'lucide-react';
 import styles from './Footer.module.css';
 
 export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.backToTop} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <ArrowUp size={16} className={styles.backToTopIcon} />
         Back to top
       </div>
       
@@ -18,11 +20,19 @@ export function Footer() {
           <div className={styles.column}>
             <h4>Get to Know Us</h4>
             <div className={styles.linkList}>
-              <Link href="/">About Us</Link>
-              <Link href="/">Careers</Link>
-              <Link href="/">Press Releases</Link>
-              <Link href="/">Easy Get Science</Link>
-            </div>
+              <Link href="/about" className={styles.linkItem}>
+                <Building2 size={16} className={styles.linkIcon} />
+                About Us
+              </Link>
+              <Link href="/careers" className={styles.linkItem}>
+                <Users size={16} className={styles.linkIcon} />
+                Careers
+              </Link>
+              <Link href="/press" className={styles.linkItem}>
+                <FileText size={16} className={styles.linkIcon} />
+                Press Releases
+              </Link>
+                          </div>
           </div>
 
           <div className={styles.column}>
@@ -35,7 +45,7 @@ export function Footer() {
                 className={styles.socialIcon}
                 aria-label="Follow us on Instagram"
               >
-                <Globe size={20} />
+                <FaInstagram size={20} />
               </a>
               <a 
                 href="https://tiktok.com/@easy.get24" 
@@ -44,7 +54,7 @@ export function Footer() {
                 className={styles.socialIcon}
                 aria-label="Follow us on TikTok"
               >
-                <Music2 size={20} />
+                <FaTiktok size={20} />
               </a>
             </div>
           </div>
@@ -52,10 +62,22 @@ export function Footer() {
           <div className={styles.column}>
             <h4>Let Us Help You</h4>
             <div className={styles.linkList}>
-              <Link href="/track-order">Track Order</Link>
-              <Link href="/return-policy">Returns Center</Link>
-              <Link href="/contact-us">Contact Us</Link>
-              <Link href="/">Help & FAQ</Link>
+              <Link href="/track-order" className={styles.linkItem}>
+                <Package size={16} className={styles.linkIcon} />
+                Track Order
+              </Link>
+              <Link href="/return-policy" className={styles.linkItem}>
+                <Shield size={16} className={styles.linkIcon} />
+                Returns Center
+              </Link>
+              <Link href="/contact-us" className={styles.linkItem}>
+                <HelpCircle size={16} className={styles.linkIcon} />
+                Contact Us
+              </Link>
+              <Link href="/help" className={styles.linkItem}>
+                <HelpCircle size={16} className={styles.linkIcon} />
+                Help & FAQ
+              </Link>
             </div>
           </div>
         </div>
@@ -63,12 +85,24 @@ export function Footer() {
 
       <div className={styles.bottom}>
         <div className={styles.bottomLinks}>
-          <Link href="/terms-and-conditions">Terms & Conditions</Link>
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/return-policy">Return Policy</Link>
-          <Link href="/contact-us">Contact Us</Link>
+          <Link href="/terms-and-conditions" className={styles.bottomLink}>
+            <ChevronRight size={14} className={styles.bottomLinkIcon} />
+            Terms & Conditions
+          </Link>
+          <Link href="/privacy" className={styles.bottomLink}>
+            <ChevronRight size={14} className={styles.bottomLinkIcon} />
+            Privacy Policy
+          </Link>
+          <Link href="/return-policy" className={styles.bottomLink}>
+            <ChevronRight size={14} className={styles.bottomLinkIcon} />
+            Return Policy
+          </Link>
+          <Link href="/contact-us" className={styles.bottomLink}>
+            <ChevronRight size={14} className={styles.bottomLinkIcon} />
+            Contact Us
+          </Link>
         </div>
-        <p>© {new Date().getFullYear()}, Easy Get, Inc. or its affiliates</p>
+        <p>© {new Date().getFullYear()} EasyGet. All rights reserved. Designed for a better shopping experience.</p>
       </div>
     </footer>
   );

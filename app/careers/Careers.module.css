@@ -1,0 +1,172 @@
+.page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 2rem 0;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: #333;
+}
+
+.backIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.mainContent {
+  padding: 3rem 2rem;
+}
+
+.message {
+  text-align: center;
+}
+
+.statusText {
+  font-size: 1.25rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.contactSection {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.contactSection h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.contactInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.instagramIcon {
+  width: 20px;
+  height: 20px;
+  color: #E4405F;
+  flex-shrink: 0;
+}
+
+.instagramLink {
+  color: #E4405F;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.instagramLink:hover {
+  color: #C13584;
+  text-decoration: underline;
+}
+
+.note {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.note p {
+  color: #856404;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 1rem 0;
+  }
+  
+  .content {
+    margin: 0 1rem;
+  }
+  
+  .header {
+    padding: 2rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .mainContent {
+    padding: 2rem 1.5rem;
+  }
+  
+  .contactSection {
+    padding: 1.5rem;
+  }
+  
+  .iconWrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+}

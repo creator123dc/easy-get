@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://easyget.com/sitemap.xml
+
+# Block common non-content paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Allow search engines to crawl important pages
+Allow: /product/
+Allow: /category/
+Allow: /deals/
+Allow: /cart/
+Allow: /checkout/
+Allow: /about/
+Allow: /contact-us/
+Allow: /help/
+Allow: /track-order/
+
+# Crawl delay (optional, be nice to servers)
+Crawl-delay: 1
