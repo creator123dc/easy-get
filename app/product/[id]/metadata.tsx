@@ -15,11 +15,18 @@ interface Product {
 
 export async function generateProductMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   try {
-    const { data: product } = await supabase
-      .from('products')
-      .select('*')
-      .eq('id', params.id)
-      .single();
+    // Try to parse as number first, if that fails try as string
+    let query = supabase.from('products').select('*');
+    
+    // Try with numeric ID
+    const numericId = parseInt(params.id);
+    if (!isNaN(numericId)) {
+      query = query.eq('id', numericId);
+    } else {
+      query = query.eq('id', params.id);
+    }
+    
+    const { data: product } = await query.single();
 
     if (!product) {
       return {

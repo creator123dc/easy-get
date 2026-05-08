@@ -26,11 +26,18 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 async function getProduct(id: string): Promise<Product> {
-  const { data, error } = await supabase
-    .from('products')
-    .select('*')
-    .eq('id', id)
-    .single();
+  // Try to parse as number first, if that fails try as string
+  let query = supabase.from('products').select('*');
+  
+  // Try with numeric ID
+  const numericId = parseInt(id);
+  if (!isNaN(numericId)) {
+    query = query.eq('id', numericId);
+  } else {
+    query = query.eq('id', id);
+  }
+  
+  const { data, error } = await query.single();
 
   if (error || !data) {
     notFound();
