@@ -54,8 +54,7 @@ export default function ProductSchema({ product }: ProductSchemaProps) {
   if (hasDiscount) {
     schema.offers = {
       ...schema.offers,
-      "price": originalPrice.toString(),
-      "salePrice": price.toString()
+      "price": price.toString()
     };
   }
 
