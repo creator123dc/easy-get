@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import styles from './Search.module.css';
 import supabase from '@/lib/supabase';
 
@@ -18,13 +18,13 @@ interface Product {
 }
 
 export default function SearchPage() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const query = router.query.q as string;
+    const query = searchParams.get('q');
     
     if (query) {
       const fetchProducts = async () => {
@@ -54,7 +54,7 @@ export default function SearchPage() {
     } else {
       setLoading(false);
     }
-  }, [router.query.q]);
+  }, [searchParams.get('q')]);
 
   const calculateDiscountPercentage = (product: Product) => {
     if (!product.discount_price || !product.original_price) {
@@ -71,7 +71,7 @@ export default function SearchPage() {
         <div className="container">
           <h1 className={styles.title}>Search Results</h1>
           <p className={styles.subtitle}>
-            {router.query.q ? `Showing results for "${router.query.q}"` : 'No search query'}
+            {searchParams.get('q') ? `Showing results for "${searchParams.get('q')}"` : 'No search query'}
           </p>
           
           <div className={styles.loadingState}>
@@ -101,7 +101,7 @@ export default function SearchPage() {
           <h1 className={styles.title}>Search Results</h1>
           <div className={styles.errorState}>
             <p>{error}</p>
-            <button onClick={() => router.push('/')} className={styles.retryButton}>
+            <button onClick={() => window.location.href = '/'} className={styles.retryButton}>
               Back to Home
             </button>
           </div>
@@ -116,7 +116,7 @@ export default function SearchPage() {
         <div className="container">
           <h1 className={styles.title}>Search Results</h1>
           <p className={styles.subtitle}>
-            {router.query.q ? `No results found for "${router.query.q}"` : 'No search query'}
+            {searchParams.get('q') ? `No results found for "${searchParams.get('q')}"` : 'No search query'}
           </p>
         </div>
       </div>
@@ -128,7 +128,7 @@ export default function SearchPage() {
       <div className="container">
         <h1 className={styles.title}>Search Results</h1>
         <p className={styles.subtitle}>
-          {router.query.q ? `Found ${products.length} result${products.length === 1 ? '' : 's'} for "${router.query.q}"` : 'No search query'}
+          {searchParams.get('q') ? `Found ${products.length} result${products.length === 1 ? '' : 's'} for "${searchParams.get('q')}"` : 'No search query'}
         </p>
         
         <div className={styles.productsGrid}>
