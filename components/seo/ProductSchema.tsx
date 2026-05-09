@@ -13,26 +13,28 @@ interface ProductSchemaProps {
 }
 
 export default function ProductSchema({ product }: ProductSchemaProps) {
-  const price = product.discount_price || product.price;
-  const originalPrice = product.original_price || product.price;
-  const hasDiscount = product.discount_price && product.original_price;
+  const price = product?.discount_price || product?.price;
+  const originalPrice = product?.original_price || product?.price;
+  const safePrice = Number(price ?? 0);
+  const safeOriginal = Number(originalPrice ?? safePrice);
+  const hasDiscount = product?.discount_price && product?.original_price;
   
   const schema = {
     "@context": "https://schema.org/",
     "@type": "Product",
-    "name": product.title,
-    "image": product.image,
-    "description": product.description || `Buy ${product.title} at Easy Get Pakistan. High quality product with cash on delivery available.`,
-    "sku": product.id.toString(),
+    "name": product?.title || "",
+    "image": product?.image || "",
+    "description": product?.description || `Buy ${product?.title || "Product"} at Easy Get Pakistan. High quality product with cash on delivery available.`,
+    "sku": Number(product?.id ?? 0).toString(),
     "brand": {
       "@type": "Brand",
       "name": "Easy Get"
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://easyget.com/product/${product.id}`,
+      "url": `https://easyget.com/product/${product?.id || ""}`,
       "priceCurrency": "PKR",
-      "price": price.toString(),
+      "price": safePrice.toString(),
       "priceValidUntil": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
       "itemCondition": "https://schema.org/NewCondition",
       "availability": "https://schema.org/InStock",
@@ -44,8 +46,8 @@ export default function ProductSchema({ product }: ProductSchemaProps) {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": product.rating.toString(),
-      "reviewCount": product.reviews || "0",
+      "ratingValue": Number(product?.rating ?? 0).toString(),
+      "reviewCount": product?.reviews || "0",
       "bestRating": "5",
       "worstRating": "1"
     }
@@ -54,7 +56,7 @@ export default function ProductSchema({ product }: ProductSchemaProps) {
   if (hasDiscount) {
     schema.offers = {
       ...schema.offers,
-      "price": price.toString()
+      "price": safeOriginal.toString()
     };
   }
 

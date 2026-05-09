@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import supabase from '@/lib/supabase';
 import ProductClient from './ProductClient';
+import ProductNotFound from './ProductNotFound';
 import { generateProductMetadata } from './metadata';
+
+// Force dynamic rendering for product pages
+export const dynamic = "force-dynamic";
 
 interface Product {
   id: number;
@@ -21,33 +24,38 @@ interface Product {
   }[];
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   return generateProductMetadata({ params });
 }
 
-async function getProduct(id: string): Promise<Product> {
-  // Try to parse as number first, if that fails try as string
-  let query = supabase.from('products').select('*');
-  
-  // Try with numeric ID
+async function getProduct(id: string): Promise<Product | null> {
+  // Convert string ID to number for database query
   const numericId = parseInt(id);
-  if (!isNaN(numericId)) {
-    query = query.eq('id', numericId);
-  } else {
-    query = query.eq('id', id);
-  }
-  
-  const { data, error } = await query.single();
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('id', numericId) // Use numeric ID for database
+    .maybeSingle();
 
-  if (error || !data) {
-    notFound();
-  }
+  console.log("ID:", id);
+  console.log("Numeric ID:", numericId);
+  console.log("DATA:", data);
+  console.log("ERROR:", error);
+
+  if (error || !data) return null;
 
   return data;
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const product = await getProduct(params.id);
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  
+  // Check if product exists by doing a quick fetch
+  const product = await getProduct(id);
+  
+  if (!product) {
+    return <ProductNotFound />;
+  }
 
-  return <ProductClient product={product} />;
+  return <ProductClient id={id} />;
 }

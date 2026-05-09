@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
 import supabase from '@/lib/supabase';
@@ -27,15 +27,50 @@ interface Product {
 }
 
 interface ProductClientProps {
-  product: Product;
+  id: string;
 }
 
-export default function ProductClient({ product }: ProductClientProps) {
+export default function ProductClient({ id }: ProductClientProps) {
   const router = useRouter();
   const { addToCart } = useCart();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [currentImage, setCurrentImage] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<any>(null);
+
+  // Fetch product data on mount
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        let query = supabase.from('products').select('*');
+        
+        // Try with numeric ID
+        const numericId = parseInt(id);
+        if (!isNaN(numericId)) {
+          query = query.eq('id', numericId);
+        } else {
+          query = query.eq('id', id);
+        }
+        
+        const { data, error } = await query.single();
+        
+        if (error || !data) {
+          console.error('Product not found:', error);
+          setProduct(null);
+        } else {
+          setProduct(data);
+        }
+      } catch (error) {
+        console.error('Error fetching product:', error);
+        setProduct(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProduct();
+  }, [id]);
 
   // EXTENDED COLOR MAP - Real-world colors
   const colorMap: { [key: string]: string } = {
@@ -165,6 +200,8 @@ export default function ProductClient({ product }: ProductClientProps) {
 
   // Initialize current image and selected color when component mounts
   React.useEffect(() => {
+    if (!product) return;
+    
     // Set current image using combined array
     const allImages = product.images && product.images.length > 0
       ? [product.image, ...product.images]
@@ -178,6 +215,8 @@ export default function ProductClient({ product }: ProductClientProps) {
   }, [product]);
 
   const handleAddToCart = () => {
+    if (!product) return;
+    
     for (let i = 0; i < quantity; i++) {
       const cartItem = {
         ...product,
@@ -188,6 +227,8 @@ export default function ProductClient({ product }: ProductClientProps) {
   };
 
   const handleBuyNow = () => {
+    if (!product) return;
+    
     // Create a single item cart for checkout
     const buyNowItem = {
       ...product,
@@ -205,13 +246,13 @@ export default function ProductClient({ product }: ProductClientProps) {
   };
 
   // Create combined array including main image and gallery images
-  const allImages = product.images && product.images.length > 0
+  const allImages = product && product.images && product.images.length > 0
     ? [product.image, ...product.images]
-    : [product.image];
+    : product ? [product.image] : [];
 
   // Calculate discount percentage
   const calculateDiscountPercentage = () => {
-    if (!product.discount_price || !product.original_price) {
+    if (!product || !product.discount_price || !product.original_price) {
       return 0;
     }
     const originalPrice = Number(product.original_price);
@@ -220,7 +261,86 @@ export default function ProductClient({ product }: ProductClientProps) {
   };
 
   const discountPercentage = calculateDiscountPercentage();
-  const hasDiscount = product.discount_price && product.original_price;
+  const hasDiscount = product && product.discount_price && product.original_price;
+
+  // Show loading state while fetching product
+  if (loading) {
+    return (
+      <div className={styles.productPage}>
+        <div className="container">
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            minHeight: '60vh',
+            flexDirection: 'column',
+            gap: '20px'
+          }}>
+            <div style={{
+              width: '40px',
+              height: '40px',
+              border: '4px solid #f3f3f3',
+              borderTop: '4px solid #007bff',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite'
+            }}></div>
+            <p style={{ color: '#6c757d', fontSize: '16px' }}>Loading product...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state if product not found
+  if (!product) {
+    return (
+      <div className={styles.productPage}>
+        <div className="container">
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            minHeight: '60vh',
+            flexDirection: 'column',
+            gap: '20px',
+            textAlign: 'center'
+          }}>
+            <div style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <Package size={40} color="#6c757d" />
+            </div>
+            <h2 style={{ color: '#212529', margin: 0 }}>Product Not Found</h2>
+            <p style={{ color: '#6c757d', margin: '0 0 20px 0' }}>
+              The product you're looking for doesn't exist or has been removed.
+            </p>
+            <Link 
+              href="/"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 24px',
+                backgroundColor: '#007bff',
+                color: 'white',
+                textDecoration: 'none',
+                borderRadius: '6px',
+                fontSize: '16px'
+              }}
+            >
+              ← Back to Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.productPage}>

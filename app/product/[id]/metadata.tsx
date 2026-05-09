@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import supabase from '@/lib/supabase';
 
+// Force dynamic rendering for product metadata
+export const dynamic = "force-dynamic";
+
 interface Product {
   id: number;
   title: string;
@@ -13,25 +16,21 @@ interface Product {
   description?: string;
 }
 
-export async function generateProductMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateProductMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   try {
-    // Try to parse as number first, if that fails try as string
-    let query = supabase.from('products').select('*');
-    
-    // Try with numeric ID
-    const numericId = parseInt(params.id);
-    if (!isNaN(numericId)) {
-      query = query.eq('id', numericId);
-    } else {
-      query = query.eq('id', params.id);
-    }
-    
-    const { data: product } = await query.single();
+    const { id } = await params;
+    // Convert string ID to number for database query
+    const numericId = parseInt(id);
+    const { data: product } = await supabase
+      .from('products')
+      .select('*')
+      .eq('id', numericId) // Use numeric ID for database
+      .maybeSingle();
 
     if (!product) {
       return {
         title: 'Product Not Found | Easy Get',
-        description: 'The product you are looking for could not be found.',
+        description: 'The product you are looking for could not be found. Browse our other products.',
       };
     }
 
@@ -54,7 +53,7 @@ export async function generateProductMetadata({ params }: { params: { id: string
       openGraph: {
         title,
         description,
-        url: `https://easyget.com/product/${params.id}`,
+        url: `https://easyget.com/product/${id}`,
         siteName: 'Easy Get',
         images: [
           {
@@ -74,7 +73,7 @@ export async function generateProductMetadata({ params }: { params: { id: string
         images: [product.image],
       },
       alternates: {
-        canonical: `https://easyget.com/product/${params.id}`,
+        canonical: `https://easyget.com/product/${id}`,
       },
     };
   } catch (error) {
