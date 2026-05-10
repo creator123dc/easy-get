@@ -10,6 +10,13 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: "Easy Get | Best Deals in Pakistan",
   description: "Shop the best deals in Pakistan across kitchen, tech, fashion, and skincare. Cash on Delivery available.",

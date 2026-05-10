@@ -366,10 +366,11 @@ export default function ProductClient({ id }: ProductClientProps) {
                 
                 return (
                   <img 
+                    className="w-full h-auto object-contain max-w-full"
                     src={hasValidImage 
                       ? currentImage 
                       : 'https://via.placeholder.com/600x600/e9ecef/6c757d?text=No+Image'} 
-                    alt={`${product?.title || 'Product'} - Main product image showing the ${product?.title || 'item'} from Easy Get Pakistan`} 
+                    alt={`${product?.title || 'Product'} - Main product image showing ${product?.title || 'item'} from Easy Get Pakistan`} 
                     loading="lazy"
                     decoding="async"
                     onError={(e) => {
@@ -398,6 +399,7 @@ export default function ProductClient({ id }: ProductClientProps) {
                     onClick={() => setCurrentImage(image)}
                   >
                     <img 
+                      className="w-full h-auto object-contain max-w-full"
                       src={hasValidImage 
                         ? image 
                         : 'https://via.placeholder.com/100x100/e9ecef/6c757d?text=No+Img'} 

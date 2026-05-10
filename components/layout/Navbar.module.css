@@ -7,6 +7,14 @@
   -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow-sm);
   border-bottom: 1px solid var(--color-border);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .navbarWrapper {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 }
 
 .topBar {
@@ -24,6 +32,14 @@
   max-width: 1400px;
   margin: 0 auto;
   gap: 2rem;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .navContainer {
+    padding: 0.5rem 16px;
+    gap: 1rem;
+  }
 }
 
 .logoArea {
