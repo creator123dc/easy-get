@@ -60,114 +60,202 @@
 .title {
   font-size: 2.5rem;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 400;
 }
 
 .mainContent {
   padding: 3rem 2rem;
 }
 
-.message {
-  text-align: center;
+.releasesList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
-.statusContainer {
+.releaseCard {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.releaseCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.releaseHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.releaseIconWrapper {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-}
-
-.statusIcon {
-  width: 24px;
-  height: 24px;
-  color: #6c757d;
   flex-shrink: 0;
 }
 
-.statusText {
-  font-size: 1.25rem;
+.releaseIcon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.releaseMeta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.releaseCategory {
+  background: #2c3e50;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.releaseDate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.calendarIcon {
+  color: #6c757d;
+}
+
+.releaseTitle {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.releaseContent {
   color: #495057;
-  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.6;
   margin: 0;
 }
 
-.updateSection {
-  background: #e8f4fd;
-  border-radius: 8px;
-  padding: 2rem;
-  margin: 2rem 0;
-  border: 1px solid #bee5eb;
+.releaseBody {
+  margin-top: 1.5rem;
 }
 
-.updateSection h3 {
-  font-size: 1.3rem;
-  color: #0c5460;
-  margin-bottom: 1rem;
+.releaseParagraph {
+  color: #495057;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin: 0 0 1.5rem 0;
+}
+
+.releaseParagraph:last-of-type {
+  margin-bottom: 0;
+}
+
+.offersSection {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.offersTitle {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
   font-weight: 600;
 }
 
-.updateText {
-  color: #0c5460;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+.offersList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.contactInfo {
-  text-align: left;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 1rem;
-  border-radius: 6px;
-}
-
-.contactInfo p {
-  color: #0c5460;
-  font-size: 0.95rem;
-  margin: 0 0 0.5rem 0;
-  font-weight: 500;
-}
-
-.emailLink {
-  color: #0275d8;
-  text-decoration: none;
+.offerItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #495057;
   font-size: 1rem;
   font-weight: 500;
-  transition: color 0.2s ease;
 }
 
-.emailLink:hover {
-  color: #01447e;
-  text-decoration: underline;
+.offerIcon {
+  width: 20px;
+  height: 20px;
+  color: #10b981;
+  flex-shrink: 0;
 }
 
-.infoBox {
-  background: #fff3cd;
-  border: 1px solid #ffeaa7;
+.contactSection {
+  background: #e8f4fd;
+  border: 1px solid #bee5eb;
   border-radius: 8px;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  text-align: left;
+  padding: 2rem;
+  text-align: center;
 }
 
-.infoBox h4 {
-  color: #856404;
-  font-size: 1.1rem;
+.contactTitle {
+  font-size: 1.3rem;
+  color: #0c5460;
   margin: 0 0 0.75rem 0;
   font-weight: 600;
 }
 
-.infoBox p {
-  color: #856404;
-  font-size: 0.95rem;
+.contactText {
+  color: #0c5460;
+  font-size: 1rem;
   line-height: 1.6;
-  margin: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.instagramLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.instagramLink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(131, 58, 180, 0.4);
 }
 
 @media (max-width: 768px) {

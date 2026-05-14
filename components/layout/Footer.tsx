@@ -39,7 +39,7 @@ export function Footer() {
             <h4>Follow Us</h4>
             <div className={styles.socialIcons}>
               <a 
-                href="https://www.instagram.com/easy.get99" 
+                href="https://www.instagram.com/easy_getstore?igsh=MWdkdXhtNWIwaGFsbA==" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className={styles.socialIcon}

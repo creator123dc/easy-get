@@ -142,7 +142,170 @@
 .summaryDivider {
   height: 1px;
   background-color: var(--color-border);
-  margin: 0.5rem 0;
+  margin: 1rem 0;
+}
+
+/* Promo Code Section */
+.promoCodeSection {
+  margin: 1rem 0;
+}
+
+.havePromoCodeButton {
+  background: none;
+  border: none;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  transition: var(--transition);
+}
+
+.havePromoCodeButton:hover {
+  color: var(--color-primary);
+}
+
+.promoCodeInputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.promoCodeInputWrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.promoCodeInput {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.promoCodeInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.1);
+}
+
+.applyPromoButton {
+  padding: 0.6rem 1rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.applyPromoButton:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.applyPromoButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.promoCodeError {
+  color: #dc3545;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.6rem;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: var(--radius-sm);
+}
+
+.appliedPromoCode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.8rem;
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: var(--radius-sm);
+  gap: 0.5rem;
+}
+
+.appliedPromoCodeInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.appliedPromoCodeLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0369a1;
+}
+
+.appliedPromoCodeDiscount {
+  font-size: 0.85rem;
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.removePromoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  background-color: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.removePromoButton:hover {
+  background-color: rgba(100, 116, 139, 0.1);
+  color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  .promoCodeInputWrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .applyPromoButton {
+    padding: 0.75rem;
+  }
+  
+  .appliedPromoCode {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .appliedPromoCodeInfo {
+    width: 100%;
+  }
+  
+  .removePromoButton {
+    align-self: flex-end;
+  }
 }
 
 .checkoutDetails {
@@ -329,6 +492,46 @@
 .continueButton:hover {
   background-color: var(--color-primary-hover);
   color: white;
+}
+
+.removePromoButton {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.removePromoButton:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  .promoCodeInputWrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .promoCodeIcon {
+    display: none;
+  }
+  
+  .applyPromoButton {
+    padding: 0.75rem;
+  }
+  
+  .appliedPromoCode {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .appliedPromoCodeInfo {
+    width: 100%;
+  }
+  
+  .removePromoButton {
+    align-self: flex-end;
+  }
 }
 
 /* Order Success State */

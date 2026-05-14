@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, FileText, Bell } from 'lucide-react';
+import { ArrowLeft, FileText, TrendingUp, Calendar, CheckCircle } from 'lucide-react';
 import styles from './Press.module.css';
 
 export default function PressPage() {
@@ -24,34 +24,75 @@ export default function PressPage() {
             <div className={styles.iconWrapper}>
               <FileText className={styles.icon} />
             </div>
-            <h1 className={styles.title}>Press Releases</h1>
+            <h1 className={styles.title}>Easy Get Expands Digital Sales Network Across Pakistan</h1>
+            <p className={styles.subtitle}>Latest news and updates from Easy Get</p>
           </div>
 
           <div className={styles.mainContent}>
-            <div className={styles.message}>
-              <div className={styles.statusContainer}>
-                <Bell className={styles.statusIcon} />
-                <p className={styles.statusText}>No official press releases available yet.</p>
-              </div>
-              
-              <div className={styles.updateSection}>
-                <h3>Stay tuned for updates</h3>
-                <p className={styles.updateText}>
-                  We're working on exciting developments and will share official press releases here as they become available.
-                </p>
-                
-                <div className={styles.contactInfo}>
-                  <p>For media inquiries, please contact us at:</p>
-                  <a href="mailto:press@easyget.com" className={styles.emailLink}>
-                    press@easyget.com
-                  </a>
+            <div className={styles.releaseCard}>
+              <div className={styles.releaseHeader}>
+                <div className={styles.releaseIconWrapper}>
+                  <TrendingUp className={styles.releaseIcon} />
+                </div>
+                <div className={styles.releaseMeta}>
+                  <span className={styles.releaseCategory}>Expansion</span>
+                  <div className={styles.releaseDate}>
+                    <Calendar className={styles.calendarIcon} size={14} />
+                    May 2026
+                  </div>
                 </div>
               </div>
-
-              <div className={styles.infoBox}>
-                <h4>Media Kit</h4>
-                <p>Our official media kit including brand assets, company information, and high-resolution images will be available soon.</p>
+              
+              <div className={styles.releaseBody}>
+                <p className={styles.releaseParagraph}>
+                  Easy Get is rapidly growing as a modern e-commerce platform focused on providing high-quality and affordable products across Pakistan.
+                </p>
+                
+                <p className={styles.releaseParagraph}>
+                  As part of our expansion strategy, we are now building a nationwide network of digital sales partners.
+                </p>
+                
+                <p className={styles.releaseParagraph}>
+                  Our mission is not only to deliver great products but also to create earning opportunities for young individuals, students, and aspiring entrepreneurs.
+                </p>
+                
+                <div className={styles.offersSection}>
+                  <h3 className={styles.offersTitle}>We are proud to support a new generation of digital earners by offering:</h3>
+                  <div className={styles.offersList}>
+                    <div className={styles.offerItem}>
+                      <CheckCircle className={styles.offerIcon} />
+                      <span>Flexible earning opportunities</span>
+                    </div>
+                    <div className={styles.offerItem}>
+                      <CheckCircle className={styles.offerIcon} />
+                      <span>Zero investment model</span>
+                    </div>
+                    <div className={styles.offerItem}>
+                      <CheckCircle className={styles.offerIcon} />
+                      <span>Performance-based rewards</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <p className={styles.releaseParagraph}>
+                  This initiative aims to empower individuals to earn online using social media and modern digital tools.
+                </p>
               </div>
+            </div>
+
+            <div className={styles.contactSection}>
+              <h3 className={styles.contactTitle}>Media Inquiries</h3>
+              <p className={styles.contactText}>
+                For press inquiries, interviews, or additional information, please contact our media relations team.
+              </p>
+              <a 
+                href="https://www.instagram.com/easy_getstore?igsh=MWdkdXhtNWIwaGFsbA==" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.instagramLink}
+              >
+                DM us on Instagram
+              </a>
             </div>
           </div>
         </div>

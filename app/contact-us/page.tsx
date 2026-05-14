@@ -35,7 +35,7 @@ export default function ContactUsPage() {
                   Send us a direct message for quick support. We typically respond within 2-4 hours during business hours.
                 </p>
                 <a 
-                  href="https://www.instagram.com/easy.get99" 
+                  href="https://www.instagram.com/easy_getstore?igsh=MWdkdXhtNWIwaGFsbA==" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors"

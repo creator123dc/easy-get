@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
 import supabase from '@/lib/supabase';
 import styles from './Checkout.module.css';
-import { ShieldCheck, Truck, CreditCard } from 'lucide-react';
+import { ShieldCheck, Truck, CreditCard, Tag, X } from 'lucide-react';
+import { validatePromoCode, applyPromoCodeDiscount, updatePromoCodeUsage, formatPromoCode, testFetchAllPromoCodes, type PromoCode } from '@/lib/promoCode';
 
 interface OrderForm {
   fullName: string;
@@ -42,6 +43,14 @@ export default function CheckoutPage() {
   const [error, setError] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('COD');
   const [buyNowItem, setBuyNowItem] = useState<any>(null);
+  
+  // Promo code state
+  const [promoCodeInput, setPromoCodeInput] = useState('');
+  const [appliedPromoCode, setAppliedPromoCode] = useState<PromoCode | null>(null);
+  const [promoCodeError, setPromoCodeError] = useState('');
+  const [promoCodeSuccess, setPromoCodeSuccess] = useState('');
+  const [isApplyingPromoCode, setIsApplyingPromoCode] = useState(false);
+  const [showPromoCodeInput, setShowPromoCodeInput] = useState(false);
 
   useEffect(() => {
     const buyNowItem = sessionStorage.getItem('buyNowItem');
@@ -51,14 +60,54 @@ export default function CheckoutPage() {
       setBuyNowItem(item);
       setCart([item]); // override cart with single item
     }
+
+    // Test Supabase connection
+    testFetchAllPromoCodes();
   }, []);
 
   const calculateTotal = () => {
-    return cart.reduce((total, item) => {
+    const subtotal = cart.reduce((total, item) => {
       const cartItem = item as any;
       const price = Number(cartItem.discount_price || cartItem.price);
       return total + (price * (cartItem.quantity || 1));
     }, 0);
+    
+    // Apply promo code discount if applicable
+    if (appliedPromoCode) {
+      return applyPromoCodeDiscount(subtotal, appliedPromoCode.discount);
+    }
+    
+    return subtotal;
+  };
+
+  const handleApplyPromoCode = async () => {
+    setPromoCodeError('');
+    setPromoCodeSuccess('');
+    setIsApplyingPromoCode(true);
+
+    try {
+      const result = await validatePromoCode(promoCodeInput);
+      
+      if (result.valid && result.promoCode) {
+        setAppliedPromoCode(result.promoCode);
+        setPromoCodeSuccess(`Code applied ✅`);
+        setPromoCodeInput('');
+        setShowPromoCodeInput(false);
+      } else {
+        setPromoCodeError(result.error || 'Invalid promo code');
+      }
+    } catch (error) {
+      console.error('Error applying promo code:', error);
+      setPromoCodeError('Failed to apply promo code. Please try again.');
+    } finally {
+      setIsApplyingPromoCode(false);
+    }
+  };
+
+  const handleRemovePromoCode = () => {
+    setAppliedPromoCode(null);
+    setPromoCodeSuccess('');
+    setPromoCodeError('');
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,10 +154,14 @@ export default function CheckoutPage() {
       // Determine products array (cart or buy now item)
       const products = buyNowItem ? [buyNowItem] : cart;
       
+      const finalPrice = calculateTotal();
+      
       const orderData = {
         product_id: products[0]?.id || null,
         quantity: products[0]?.quantity || 1,
-        total_price: (products[0]?.price || 0) * (products[0]?.quantity || 1),
+        total_price: finalPrice,
+        promo_code: appliedPromoCode ? appliedPromoCode.code : null,
+        discount_amount: appliedPromoCode ? appliedPromoCode.discount : null,
         user_info: {
           full_name: orderForm.fullName,
           phone_number: orderForm.phoneNumber,
@@ -131,6 +184,11 @@ export default function CheckoutPage() {
         console.error('Error placing order:', error);
         setError('Failed to place order. Please try again.');
         return;
+      }
+
+      // Update promo code usage if a promo code was applied
+      if (appliedPromoCode) {
+        await updatePromoCodeUsage(appliedPromoCode.code);
       }
 
       // Clear cart and buy now item after successful order
@@ -209,6 +267,59 @@ export default function CheckoutPage() {
               <div className={styles.summaryRow}>
                 <span>Subtotal ({cart.length} items)</span>
                 <span>PKR {calculateTotal().toLocaleString()}</span>
+              </div>
+              
+              {/* Promo Code Section */}
+              <div className={styles.promoCodeSection}>
+                {!appliedPromoCode ? (
+                  <>
+                    {!showPromoCodeInput ? (
+                      <button
+                        onClick={() => setShowPromoCodeInput(true)}
+                        className={styles.havePromoCodeButton}
+                      >
+                        Have a promo code?
+                      </button>
+                    ) : (
+                      <div className={styles.promoCodeInputContainer}>
+                        <div className={styles.promoCodeInputWrapper}>
+                          <input
+                            type="text"
+                            value={promoCodeInput}
+                            onChange={(e) => setPromoCodeInput(e.target.value)}
+                            placeholder="Enter promo code"
+                            className={styles.promoCodeInput}
+                            onKeyPress={(e) => e.key === 'Enter' && handleApplyPromoCode()}
+                          />
+                          <button
+                            onClick={handleApplyPromoCode}
+                            disabled={isApplyingPromoCode || !promoCodeInput.trim()}
+                            className={styles.applyPromoButton}
+                          >
+                            {isApplyingPromoCode ? 'Applying...' : 'Apply'}
+                          </button>
+                        </div>
+                        {promoCodeError && (
+                          <div className={styles.promoCodeError}>{promoCodeError}</div>
+                        )}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className={styles.appliedPromoCode}>
+                    <div className={styles.appliedPromoCodeInfo}>
+                      <span className={styles.appliedPromoCodeLabel}>{promoCodeSuccess}</span>
+                      <span className={styles.appliedPromoCodeDiscount}>- PKR {appliedPromoCode.discount}</span>
+                    </div>
+                    <button
+                      onClick={handleRemovePromoCode}
+                      className={styles.removePromoButton}
+                      title="Remove promo code"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                )}
               </div>
               
               <div className={styles.summaryRow}>

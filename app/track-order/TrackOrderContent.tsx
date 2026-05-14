@@ -55,7 +55,7 @@ export default function TrackOrderContent() {
 
   const handleReportNow = () => {
     // Open Instagram and close modal
-    window.open('https://www.instagram.com/easy.get99', '_blank');
+    window.open('https://www.instagram.com/easy_getstore?igsh=MWdkdXhtNWIwaGFsbA==', '_blank');
     setShowReportModal(false);
   };
 

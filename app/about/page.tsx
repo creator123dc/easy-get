@@ -148,7 +148,7 @@ export default function AboutPage() {
           </p>
           <div className={styles.socialButtons}>
             <a 
-              href="https://www.instagram.com/easy.get99" 
+              href="https://www.instagram.com/easy_getstore?igsh=MWdkdXhtNWIwaGFsbA==" 
               target="_blank" 
               rel="noopener noreferrer"
               className={styles.socialButton}

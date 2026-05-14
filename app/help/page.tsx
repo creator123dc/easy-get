@@ -282,7 +282,7 @@ export default function HelpPage() {
                 <FaInstagram size={20} className={styles.contactIcon} />
                 <div>
                   <h4>DM us on Instagram</h4>
-                  <p>@easy.get99</p>
+                  <p>@easy_getstore</p>
                   <small>We reply super fast</small>
                 </div>
               </div>
@@ -297,7 +297,7 @@ export default function HelpPage() {
             </div>
             <div className={styles.socialButtons}>
               <a 
-                href="https://www.instagram.com/easy.get99" 
+                href="https://www.instagram.com/easy_getstore?igsh=MWdkdXhtNWIwaGFsbA==" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className={styles.socialButton}
