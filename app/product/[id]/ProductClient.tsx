@@ -24,6 +24,7 @@ interface Product {
     name: string;
     image: string;
   }[];
+  in_stock?: boolean;
 }
 
 interface ProductClientProps {
@@ -499,7 +500,11 @@ export default function ProductClient({ id }: ProductClientProps) {
 
             <div className={styles.stockSection}>
               <div className={styles.stockInfo}>
-                <span className={styles.inStock}>✓ In Stock</span>
+                {product.in_stock === false ? (
+                  <span className={styles.outOfStock}>✗ Out of Stock</span>
+                ) : (
+                  <span className={styles.inStock}>✓ In Stock</span>
+                )}
               </div>
               <div className={styles.trustBadges}>
                 <span>✔ Cash on Delivery</span>
@@ -525,11 +530,19 @@ export default function ProductClient({ id }: ProductClientProps) {
               </div>
 
               <div className={styles.buttonGroup}>
-                <button onClick={handleAddToCart} className={styles.addToCartButton}>
+                <button 
+                  onClick={handleAddToCart} 
+                  className={styles.addToCartButton}
+                  disabled={product.in_stock === false}
+                >
                   <ShoppingCart size={16} className={styles.buttonIcon} />
                   <span>Add to Cart</span>
                 </button>
-                <button onClick={handleBuyNow} className={styles.buyNowButton}>
+                <button 
+                  onClick={handleBuyNow} 
+                  className={styles.buyNowButton}
+                  disabled={product.in_stock === false}
+                >
                   <Zap size={16} className={styles.buttonIcon} />
                   <span>Buy Now</span>
                 </button>

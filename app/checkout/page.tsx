@@ -174,21 +174,53 @@ export default function CheckoutPage() {
         created_at: new Date().toISOString()
       };
 
+      console.log('=== ORDER PLACEMENT DEBUG ===');
+      console.log('Order request body:', JSON.stringify(orderData, null, 2));
+      console.log('Required fields check:', {
+        product_id: orderData.product_id,
+        quantity: orderData.quantity,
+        total_price: orderData.total_price,
+        user_info: orderData.user_info,
+        payment_method: orderData.payment_method,
+        status: orderData.status
+      });
+      console.log('Checking for undefined/null values:', {
+        hasUndefined: Object.values(orderData).some(v => v === undefined),
+        hasNull: Object.values(orderData).some(v => v === null),
+        product_id: orderData.product_id,
+        quantity: orderData.quantity
+      });
+
       const { data, error } = await supabase
         .from('orders')
         .insert([orderData])
         .select()
         .single();
 
+      console.log('Supabase insert response - data:', data);
+      console.log('Supabase insert response - error:', error);
+      console.log('Full error object:', JSON.stringify(error, null, 2));
+
       if (error) {
-        console.error('Error placing order:', error);
-        setError('Failed to place order. Please try again.');
+        console.error('=== ORDER PLACEMENT ERROR ===');
+        console.error('Error message:', error.message);
+        console.error('Error code:', error.code);
+        console.error('Error details:', error.details);
+        console.error('Error hint:', error.hint);
+        console.error('Full error object:', error);
+        console.error('Error type:', typeof error);
+        console.error('Error keys:', Object.keys(error || {}));
+        setError(`Failed to place order: ${error.message || 'Unknown error'}`);
         return;
       }
 
+      console.log('Order placed successfully:', data);
+
       // Update promo code usage if a promo code was applied
       if (appliedPromoCode) {
-        await updatePromoCodeUsage(appliedPromoCode.code);
+        console.log('Updating promo code usage for:', appliedPromoCode.code);
+        const updateResult = await updatePromoCodeUsage(appliedPromoCode.code);
+        console.log('Promo code usage update result:', updateResult);
       }
 
       // Clear cart and buy now item after successful order

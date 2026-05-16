@@ -532,6 +532,16 @@
   font-size: 0.9rem;
 }
 
+.outOfStock {
+  color: #dc3545;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: #f8d7da;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #f5c6cb;
+}
+
 .trustBadges {
   display: flex;
   flex-direction: column;
@@ -754,6 +764,21 @@
   transform: scale(0.95);
 }
 
+.addToCartButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  color: #6b7280;
+}
+
+.addToCartButton:disabled:hover {
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  box-shadow: none;
+  transform: none;
+}
+
 .buyNowButton {
   flex: 1;
   background-color: #eab308;
@@ -789,6 +814,21 @@
 
 .buyNowButton:active {
   transform: scale(0.95);
+}
+
+.buyNowButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  color: #6b7280;
+}
+
+.buyNowButton:disabled:hover {
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  box-shadow: none;
+  transform: none;
 }
 
 .buttonIcon {
